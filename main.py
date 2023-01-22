@@ -74,8 +74,9 @@ while True:
     if  len(faces) ==0 :
         continue
     for x,y,w,h in faces:
-    
-        resized = image
+        if h <200 or w < 200:
+            continue
+        resized = image[y:y+h,x:x+w]
         resized = resize(resized, (150,150,3))
         predict = model["model"].predict_proba([resized.flatten()])
         text = ' '.join([ "{} - {:.2F}".format(model["classes"][idx+1][0],accuracy) for idx,accuracy in enumerate(predict[0])])
