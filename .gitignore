@@ -1,0 +1,4 @@
+dataset/*
+processed/*
+model
+*.pyc
